@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 
 class DataArraySerializerTest extends TestCase
 {
-    public function testSerializingItemResource()
+    public function testSerializingItemResource(): void
     {
         $manager = new Manager();
         $manager->parseIncludes('author');
@@ -123,7 +123,7 @@ class DataArraySerializerTest extends TestCase
         $this->assertSame($expected, $scope->toArray());
     }
 
-    public function testSerializingCollectionResource()
+    public function testSerializingCollectionResource(): void
     {
         $manager = new Manager();
         $manager->parseIncludes('author');
@@ -298,7 +298,7 @@ class DataArraySerializerTest extends TestCase
         $this->assertSame($expected, $scope->toArray());
     }
 
-    public function testSerializingNullResource()
+    public function testSerializingNullResource(): void
     {
         $manager = new Manager();
         $manager->parseIncludes('author');
@@ -355,7 +355,7 @@ class DataArraySerializerTest extends TestCase
         $this->assertSame($expected, $scope->toArray());
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         Mockery::close();
     }

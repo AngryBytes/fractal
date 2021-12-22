@@ -5,7 +5,7 @@ use PHPUnit\Framework\TestCase;
 
 class ParamBagTest extends TestCase
 {
-    public function testOldFashionedGet()
+    public function testOldFashionedGet(): void
     {
         $params = new ParamBag(['one' => 'potato', 'two' => 'potato2']);
 
@@ -13,14 +13,14 @@ class ParamBagTest extends TestCase
         $this->assertSame('potato2', $params->get('two'));
     }
 
-    public function testGettingValuesTheOldFashionedWayArray()
+    public function testGettingValuesTheOldFashionedWayArray(): void
     {
         $params = new ParamBag(['one' => ['potato', 'tomato']]);
 
         $this->assertSame(['potato', 'tomato'], $params->get('one'));
     }
 
-    public function testArrayAccess()
+    public function testArrayAccess(): void
     {
         $params = new ParamBag(['foo' => 'bar', 'baz' => 'ban']);
 
@@ -32,29 +32,27 @@ class ParamBagTest extends TestCase
         $this->assertNull($params['totallymadeup']);
     }
 
-    /**
-     * @expectedException \LogicException
-     * @expectedExceptionMessage Modifying parameters is not permitted
-     */
-    public function testArrayAccessSetFails()
+    public function testArrayAccessSetFails(): void
     {
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage('Modifying parameters is not permitted');
+
         $params = new ParamBag(['foo' => 'bar']);
 
         $params['foo'] = 'someothervalue';
     }
 
-    /**
-     * @expectedException \LogicException
-     * @expectedExceptionMessage Modifying parameters is not permitted
-     */
-    public function testArrayAccessUnsetFails()
+    public function testArrayAccessUnsetFails(): void
     {
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage('Modifying parameters is not permitted');
+
         $params = new ParamBag(['foo' => 'bar']);
 
         unset($params['foo']);
     }
 
-    public function testObjectAccess()
+    public function testObjectAccess(): void
     {
         $params = new ParamBag(['foo' => 'bar', 'baz' => 'ban']);
 
@@ -64,23 +62,21 @@ class ParamBagTest extends TestCase
         $this->assertTrue(isset($params->foo));
     }
 
-    /**
-     * @expectedException \LogicException
-     * @expectedExceptionMessage Modifying parameters is not permitted
-     */
-    public function testObjectAccessSetFails()
+    public function testObjectAccessSetFails(): void
     {
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage('Modifying parameters is not permitted');
+
         $params = new ParamBag(['foo' => 'bar']);
 
         $params->foo = 'someothervalue';
     }
 
-    /**
-     * @expectedException \LogicException
-     * @expectedExceptionMessage Modifying parameters is not permitted
-     */
-    public function testObjectAccessUnsetFails()
+    public function testObjectAccessUnsetFails(): void
     {
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage('Modifying parameters is not permitted');
+
         $params = new ParamBag(['foo' => 'bar']);
 
         unset($params->foo);

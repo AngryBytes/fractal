@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class IlluminatePaginatorAdapterTest extends TestCase
 {
-    public function testPaginationAdapter()
+    public function testPaginationAdapter(): void
     {
         $total = 50;
         $count = 10;
@@ -38,7 +38,7 @@ class IlluminatePaginatorAdapterTest extends TestCase
         $this->assertSame('http://example.com/foo?page=1', $adapter->getUrl(1));
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         Mockery::close();
     }

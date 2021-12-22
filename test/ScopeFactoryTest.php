@@ -10,12 +10,12 @@ use PHPUnit\Framework\TestCase;
 
 class ScopeFactoryTest extends TestCase
 {
-    public function testItImplementsScopeFactoryInterface()
+    public function testItImplementsScopeFactoryInterface(): void
     {
         $this->assertInstanceOf('League\\Fractal\\ScopeFactoryInterface', $this->createSut());
     }
 
-    public function testItCreatesScopes()
+    public function testItCreatesScopes(): void
     {
         $sut = $this->createSut();
 
@@ -30,7 +30,7 @@ class ScopeFactoryTest extends TestCase
         $this->assertSame($scopeIdentifier, $scope->getScopeIdentifier());
     }
 
-    public function testItCreatesScopesWithParent()
+    public function testItCreatesScopesWithParent(): void
     {
         $manager = $this->createManager();
 

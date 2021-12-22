@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class PhalconFrameworkPaginatorAdapterTest extends TestCase
 {
-    public function testPaginationAdapter()
+    public function testPaginationAdapter(): void
     {
         $resultset = new \stdClass();
         $resultset->items       = array_fill(1, 10, 'fractal');

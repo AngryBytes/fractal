@@ -15,13 +15,13 @@ class JsonApiSerializerTest extends TestCase
 {
     private $manager;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->manager = new Manager();
         $this->manager->setSerializer(new JsonApiSerializer());
     }
 
-    public function testSerializeCollectionWithExtraMeta()
+    public function testSerializeCollectionWithExtraMeta(): void
     {
         $booksData = [
             [
@@ -86,7 +86,7 @@ class JsonApiSerializerTest extends TestCase
         $this->assertSame($expectedJson, $scope->toJson());
     }
 
-    public function testSerializingItemResourceWithHasOneInclude()
+    public function testSerializingItemResourceWithHasOneInclude(): void
     {
         $this->manager->parseIncludes('author');
 
@@ -138,7 +138,7 @@ class JsonApiSerializerTest extends TestCase
         $this->assertSame($expectedJson, $scope->toJson());
     }
 
-    public function testSerializingItemResourceWithMetaOnRelationship()
+    public function testSerializingItemResourceWithMetaOnRelationship(): void
     {
         $this->manager->parseIncludes('author-with-meta');
 
@@ -191,7 +191,7 @@ class JsonApiSerializerTest extends TestCase
         $this->assertSame($expectedJson, $scope->toJson());
     }
 
-    public function testSerializingItemResourceWithHasOneDasherizedInclude()
+    public function testSerializingItemResourceWithHasOneDasherizedInclude(): void
     {
         $this->manager->parseIncludes('co-author');
 
@@ -247,7 +247,7 @@ class JsonApiSerializerTest extends TestCase
         $this->assertSame($expectedJson, $scope->toJson());
     }
 
-    public function testSerializingItemResourceWithEmptyHasOneInclude()
+    public function testSerializingItemResourceWithEmptyHasOneInclude(): void
     {
         $this->manager->parseIncludes('author');
 
@@ -284,7 +284,7 @@ class JsonApiSerializerTest extends TestCase
         $this->assertSame($expectedJson, $scope->toJson());
     }
 
-    public function testSerializingItemResourceWithHasManyInclude()
+    public function testSerializingItemResourceWithHasManyInclude(): void
     {
         $this->manager->parseIncludes('published');
 
@@ -357,7 +357,7 @@ class JsonApiSerializerTest extends TestCase
         $this->assertSame($expectedJson, $scope->toJson());
     }
 
-    public function testSerializingItemResourceWithEmptyHasManyInclude()
+    public function testSerializingItemResourceWithEmptyHasManyInclude(): void
     {
         $this->manager->parseIncludes('published');
 
@@ -392,7 +392,7 @@ class JsonApiSerializerTest extends TestCase
         $this->assertSame($expectedJson, $scope->toJson());
     }
 
-    public function testSerializingItemResourceWithoutIncludes()
+    public function testSerializingItemResourceWithoutIncludes(): void
     {
         $bookData = [
             'id' => 1,
@@ -425,7 +425,7 @@ class JsonApiSerializerTest extends TestCase
         $this->assertSame($expectedJson, $scope->toJson());
     }
 
-    public function testSerializingItemResourceWithMeta()
+    public function testSerializingItemResourceWithMeta(): void
     {
         $bookData = [
             'id' => 1,
@@ -462,7 +462,7 @@ class JsonApiSerializerTest extends TestCase
         $this->assertSame($expectedJson, $scope->toJson());
     }
 
-    public function testSerializingItemResourceWithMetaInBody()
+    public function testSerializingItemResourceWithMetaInBody(): void
     {
         $bookData = [
             'id' => 1,
@@ -505,7 +505,7 @@ class JsonApiSerializerTest extends TestCase
         $this->assertSame($expectedJson, $scope->toJson());
     }
 
-    public function testSerializingCollectionResourceWithoutIncludes()
+    public function testSerializingCollectionResourceWithoutIncludes(): void
     {
         $booksData = [
             [
@@ -558,7 +558,7 @@ class JsonApiSerializerTest extends TestCase
         $this->assertSame($expectedJson, $scope->toJson());
     }
 
-    public function testSerializingCollectionResourceWithHasOneInclude()
+    public function testSerializingCollectionResourceWithHasOneInclude(): void
     {
         $this->manager->parseIncludes('author');
 
@@ -645,7 +645,7 @@ class JsonApiSerializerTest extends TestCase
         $this->assertSame($expectedJson, $scope->toJson());
     }
 
-    public function testSerializingCollectionResourceWithEmptyHasOneInclude()
+    public function testSerializingCollectionResourceWithEmptyHasOneInclude(): void
     {
         $this->manager->parseIncludes('author');
 
@@ -719,7 +719,7 @@ class JsonApiSerializerTest extends TestCase
         $this->assertSame($expectedJson, $scope->toJson());
     }
 
-    public function testSerializingCollectionResourceWithHasManyInclude()
+    public function testSerializingCollectionResourceWithHasManyInclude(): void
     {
         $this->manager->parseIncludes('published');
 
@@ -848,7 +848,7 @@ class JsonApiSerializerTest extends TestCase
         $this->assertSame($expectedJson, $scope->toJson());
     }
 
-    public function testSerializingCollectionResourceWithEmptyHasManyInclude()
+    public function testSerializingCollectionResourceWithEmptyHasManyInclude(): void
     {
         $this->manager->parseIncludes('published');
 
@@ -924,7 +924,7 @@ class JsonApiSerializerTest extends TestCase
         $this->assertSame($expectedJson, $scope->toJson());
     }
 
-    public function testSerializingCollectionResourceWithMeta()
+    public function testSerializingCollectionResourceWithMeta(): void
     {
         $booksData = [
             [
@@ -980,7 +980,7 @@ class JsonApiSerializerTest extends TestCase
         $this->assertSame($expectedJson, $scope->toJson());
     }
 
-    public function testSerializingCollectionResourceWithDuplicatedIncludeData()
+    public function testSerializingCollectionResourceWithDuplicatedIncludeData(): void
     {
         $this->manager->parseIncludes('author');
 
@@ -1060,7 +1060,7 @@ class JsonApiSerializerTest extends TestCase
         $this->assertSame($expectedJson, $scope->toJson());
     }
 
-    public function testSerializingItemResourceWithNestedIncludes()
+    public function testSerializingItemResourceWithNestedIncludes(): void
     {
         $this->manager->parseIncludes(['author', 'author.published']);
 
@@ -1146,7 +1146,7 @@ class JsonApiSerializerTest extends TestCase
         $this->assertSame($expectedJson, $scope->toJson());
     }
 
-    public function testSerializingItemResourceWithSelfLink()
+    public function testSerializingItemResourceWithSelfLink(): void
     {
         $baseUrl = 'http://example.com';
         $this->manager->setSerializer(new JsonApiSerializer($baseUrl));
@@ -1205,7 +1205,7 @@ class JsonApiSerializerTest extends TestCase
         $this->assertSame($expectedJson, $scope->toJson());
     }
 
-    public function testSerializingCollectionResourceWithSelfLink()
+    public function testSerializingCollectionResourceWithSelfLink(): void
     {
         $baseUrl = 'http://example.com';
         $this->manager->setSerializer(new JsonApiSerializer($baseUrl));
@@ -1307,7 +1307,7 @@ class JsonApiSerializerTest extends TestCase
         $this->assertSame($expectedJson, $scope->toJson());
     }
 
-    public function testSerializingItemResourceWithLinksForHasOneRelationship()
+    public function testSerializingItemResourceWithLinksForHasOneRelationship(): void
     {
         $baseUrl = 'http://example.com';
         $this->manager->setSerializer(new JsonApiSerializer($baseUrl));
@@ -1391,7 +1391,7 @@ class JsonApiSerializerTest extends TestCase
         $this->assertSame($expectedJson, $scope->toJson());
     }
 
-    public function testSerializingItemResourceWithLinksForHasManyRelationship()
+    public function testSerializingItemResourceWithLinksForHasManyRelationship(): void
     {
         $baseUrl = 'http://example.com';
         $this->manager->setSerializer(new JsonApiSerializer($baseUrl));
@@ -1519,7 +1519,7 @@ class JsonApiSerializerTest extends TestCase
         $this->assertSame($expectedJson, $scope->toJson());
     }
 
-    public function testSerializingCollectionResourceWithLinksForHasOneRelationship()
+    public function testSerializingCollectionResourceWithLinksForHasOneRelationship(): void
     {
         $baseUrl = 'http://example.com';
         $this->manager->setSerializer(new JsonApiSerializer($baseUrl));
@@ -1651,7 +1651,7 @@ class JsonApiSerializerTest extends TestCase
         $this->assertSame($expectedJson, $scope->toJson());
     }
 
-    public function testSerializingCollectionResourceWithLinksForHasManyRelationship()
+    public function testSerializingCollectionResourceWithLinksForHasManyRelationship(): void
     {
         $baseUrl = 'http://example.com';
         $this->manager->setSerializer(new JsonApiSerializer($baseUrl));
@@ -1827,12 +1827,11 @@ class JsonApiSerializerTest extends TestCase
         $this->assertSame($expectedJson, $scope->toJson());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage JSON API resource objects MUST have a valid id
-     */
-    public function testExceptionThrownIfResourceHasNoId()
+    public function testExceptionThrownIfResourceHasNoId(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('JSON API resource objects MUST have a valid id');
+
         $bookData = [
             'title' => 'Foo',
             'year' => '1991',
@@ -1844,7 +1843,7 @@ class JsonApiSerializerTest extends TestCase
         $scope->toArray();
     }
 
-    public function testSerializingItemWithReferenceToRootObject()
+    public function testSerializingItemWithReferenceToRootObject(): void
     {
         $this->manager->parseIncludes('published.author');
 
@@ -1923,7 +1922,7 @@ class JsonApiSerializerTest extends TestCase
         $this->assertSame($expectedJson, $scope->toJson());
     }
 
-    public function testSerializingCollectionWithReferenceToRootObjects()
+    public function testSerializingCollectionWithReferenceToRootObjects(): void
     {
         $this->manager->parseIncludes('author.published');
 
@@ -2035,7 +2034,7 @@ class JsonApiSerializerTest extends TestCase
         $this->assertSame($expectedJson, $scope->toJson());
     }
 
-    public function testSerializingCollectionResourceWithPaginator()
+    public function testSerializingCollectionResourceWithPaginator(): void
     {
         $baseUrl = 'http://example.com';
 
@@ -2176,7 +2175,7 @@ class JsonApiSerializerTest extends TestCase
         $this->assertSame($expectedJson, $scope->toJson());
     }
 
-    public function testSerializingCollectionResourceWithPaginatorWithOmittedUnavailablePreviousLink()
+    public function testSerializingCollectionResourceWithPaginatorWithOmittedUnavailablePreviousLink(): void
     {
         $baseUrl = 'http://example.com';
 
@@ -2314,7 +2313,7 @@ class JsonApiSerializerTest extends TestCase
         $this->assertSame($expectedJson, $scope->toJson());
     }
 
-    public function testSerializingCollectionResourceWithPaginatorWithOmittedUnavailableNextLink()
+    public function testSerializingCollectionResourceWithPaginatorWithOmittedUnavailableNextLink(): void
     {
         $baseUrl = 'http://example.com';
 
@@ -2452,7 +2451,7 @@ class JsonApiSerializerTest extends TestCase
         $this->assertSame($expectedJson, $scope->toJson());
     }
 
-    public function testCustomLinkMerge()
+    public function testCustomLinkMerge(): void
     {
         $manager = new Manager();
         $manager->setSerializer(new JsonApiSerializer('http://test.de'));
@@ -2512,7 +2511,7 @@ class JsonApiSerializerTest extends TestCase
         $this->assertSame(json_encode($expected), $scope->toJson());
     }
 
-    public function testCustomLinkMergeNoLink()
+    public function testCustomLinkMergeNoLink(): void
     {
         $manager = new Manager();
         $manager->setSerializer(new JsonApiSerializer('http://test.de'));
@@ -2568,7 +2567,7 @@ class JsonApiSerializerTest extends TestCase
         $this->assertSame(json_encode($expected), $scope->toJson());
     }
 
-    public function testCustomSelfLinkMerge()
+    public function testCustomSelfLinkMerge(): void
     {
         $manager = new Manager();
         $manager->setSerializer(new JsonApiSerializer('http://test.de'));
@@ -2627,7 +2626,7 @@ class JsonApiSerializerTest extends TestCase
         $this->assertSame(json_encode($expected), $scope->toJson());
     }
 
-    public function testEmptyAttributesIsObject()
+    public function testEmptyAttributesIsObject(): void
     {
         $manager = new Manager();
         $manager->setSerializer(new JsonApiSerializer());
@@ -2646,7 +2645,7 @@ class JsonApiSerializerTest extends TestCase
     /**
      * @dataProvider serializingWithFieldsetsProvider
      */
-    public function testSerializingWithFieldsets($fieldsetsToParse, $expected)
+    public function testSerializingWithFieldsets($fieldsetsToParse, $expected): void
     {
         $this->manager->parseIncludes(['author', 'author.published']);
 
@@ -2794,7 +2793,7 @@ class JsonApiSerializerTest extends TestCase
         ];
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         Mockery::close();
     }

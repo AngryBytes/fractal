@@ -12,7 +12,7 @@ class CollectionTest extends TestCase
         ['baz' => 'ban'],
     ];
 
-    public function testGetData()
+    public function testGetData(): void
     {
         $resource = new Collection($this->simpleCollection, function (array $data) {
             return $data;
@@ -24,14 +24,14 @@ class CollectionTest extends TestCase
     /**
      * @covers \League\Fractal\Resource\Collection::setData
      */
-    public function testSetData()
+    public function testSetData(): void
     {
         $collection = Mockery::mock('League\Fractal\Resource\Collection')->makePartial();
         $collection->setData('foo');
         $this->assertSame('foo', $collection->getData());
     }
 
-    public function testGetTransformer()
+    public function testGetTransformer(): void
     {
         $resource = new Collection($this->simpleCollection, function () {
         });
@@ -44,7 +44,7 @@ class CollectionTest extends TestCase
     /**
      * @covers \League\Fractal\Resource\Collection::setTransformer
      */
-    public function testSetTransformer()
+    public function testSetTransformer(): void
     {
         $collection = Mockery::mock('League\Fractal\Resource\Collection')->makePartial();
         $collection->setTransformer('foo');
@@ -54,7 +54,7 @@ class CollectionTest extends TestCase
     /**
      * @covers \League\Fractal\Resource\Collection::setCursor
      */
-    public function testSetCursor()
+    public function testSetCursor(): void
     {
         $cursor = Mockery::mock('League\Fractal\Pagination\Cursor');
         $collection = Mockery::mock('League\Fractal\Resource\Collection')->makePartial();
@@ -64,7 +64,7 @@ class CollectionTest extends TestCase
     /**
      * @covers \League\Fractal\Resource\Collection::getCursor
      */
-    public function testGetCursor()
+    public function testGetCursor(): void
     {
         $cursor = new Cursor();
         $collection = Mockery::mock('League\Fractal\Resource\Collection')->makePartial();
@@ -76,7 +76,7 @@ class CollectionTest extends TestCase
      * @covers \League\Fractal\Resource\Collection::setPaginator
      * @covers \League\Fractal\Resource\Collection::getPaginator
      */
-    public function testGetSetPaginator()
+    public function testGetSetPaginator(): void
     {
         $paginator = Mockery::mock('League\Fractal\Pagination\IlluminatePaginatorAdapter');
         $collection = Mockery::mock('League\Fractal\Resource\Collection')->makePartial();
@@ -88,7 +88,7 @@ class CollectionTest extends TestCase
      * @covers \League\Fractal\Resource\Collection::setMetaValue
      * @covers \League\Fractal\Resource\Collection::getMetaValue
      */
-    public function testGetSetMeta()
+    public function testGetSetMeta(): void
     {
         $collection = Mockery::mock('League\Fractal\Resource\Collection')->makePartial();
         $this->assertInstanceOf('League\Fractal\Resource\Collection', $collection->setMetaValue('foo', 'bar'));
@@ -102,7 +102,7 @@ class CollectionTest extends TestCase
     /**
      * @covers \League\Fractal\Resource\Collection::setResourceKey
      */
-    public function testSetResourceKey()
+    public function testSetResourceKey(): void
     {
         $collection = Mockery::mock('League\Fractal\Resource\Collection')->makePartial();
         $this->assertInstanceOf('League\Fractal\Resource\Collection', $collection->setResourceKey('foo'));
@@ -111,14 +111,14 @@ class CollectionTest extends TestCase
     /**
      * @covers \League\Fractal\Resource\Collection::getResourceKey
      */
-    public function testGetResourceKey()
+    public function testGetResourceKey(): void
     {
         $collection = Mockery::mock('League\Fractal\Resource\Collection')->makePartial();
         $collection->setResourceKey('foo');
         $this->assertSame('foo', $collection->getResourceKey());
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         Mockery::close();
     }

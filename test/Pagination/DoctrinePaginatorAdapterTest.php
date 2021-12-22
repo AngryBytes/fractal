@@ -1,14 +1,13 @@
 <?php
 namespace League\Fractal\Test\Pagination;
 
-use Doctrine\ORM\Query;
 use League\Fractal\Pagination\DoctrinePaginatorAdapter;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 
 class DoctrinePaginatorAdapterTest extends TestCase
 {
-    public function testPaginationAdapter()
+    public function testPaginationAdapter(): void
     {
         $total       = 50;
         $count       = 5;
@@ -57,7 +56,7 @@ class DoctrinePaginatorAdapterTest extends TestCase
         );
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         Mockery::close();
     }

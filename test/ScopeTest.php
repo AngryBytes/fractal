@@ -20,7 +20,7 @@ class ScopeTest extends TestCase
     protected $simpleItem = ['foo' => 'bar'];
     protected $simpleCollection = [['foo' => 'bar']];
 
-    public function testEmbedChildScope()
+    public function testEmbedChildScope(): void
     {
         $manager = new Manager();
 
@@ -34,7 +34,7 @@ class ScopeTest extends TestCase
         $this->assertInstanceOf('League\Fractal\Scope', $childScope);
     }
 
-    public function testGetManager()
+    public function testGetManager(): void
     {
         $resource = new Item(['foo' => 'bar'], function () {
         });
@@ -44,7 +44,7 @@ class ScopeTest extends TestCase
         $this->assertInstanceOf('League\Fractal\Manager', $scope->getManager());
     }
 
-    public function testGetResource()
+    public function testGetResource(): void
     {
         $resource = new Item(['foo' => 'bar'], function () {
         });
@@ -58,7 +58,7 @@ class ScopeTest extends TestCase
     /**
      * @covers \League\Fractal\Scope::toArray
      */
-    public function testToArray()
+    public function testToArray(): void
     {
         $manager = new Manager();
 
@@ -75,7 +75,7 @@ class ScopeTest extends TestCase
     /**
      * @covers \League\Fractal\Scope::jsonSerialize()
      */
-    public function testJsonSerializable()
+    public function testJsonSerializable(): void
     {
         $manager = new Manager();
 
@@ -89,7 +89,7 @@ class ScopeTest extends TestCase
         $this->assertEquals($scope->jsonSerialize(), $scope->toArray());
     }
 
-    public function testToJson()
+    public function testToJson(): void
     {
         $data = [
             'foo' => 'bar',
@@ -110,7 +110,7 @@ class ScopeTest extends TestCase
         $this->assertSame($expected, $scope->toJson());
     }
 
-    public function testToJsonWithOption()
+    public function testToJsonWithOption(): void
     {
         $data = [
             'foo' => 'bar',
@@ -131,7 +131,7 @@ class ScopeTest extends TestCase
         $this->assertSame($expected, $scope->toJson(JSON_PRETTY_PRINT));
     }
 
-    public function testGetCurrentScope()
+    public function testGetCurrentScope(): void
     {
         $manager = new Manager();
 
@@ -148,7 +148,7 @@ class ScopeTest extends TestCase
         $this->assertSame('profile', $grandChildScope->getScopeIdentifier());
     }
 
-    public function testGetIdentifier()
+    public function testGetIdentifier(): void
     {
         $manager = new Manager();
 
@@ -165,7 +165,7 @@ class ScopeTest extends TestCase
         $this->assertSame('book.author.profile', $grandChildScope->getIdentifier());
     }
 
-    public function testGetParentScopes()
+    public function testGetParentScopes(): void
     {
         $manager = new Manager();
 
@@ -182,7 +182,7 @@ class ScopeTest extends TestCase
         $this->assertSame(['book', 'author'], $grandChildScope->getParentScopes());
     }
 
-    public function testIsRequested()
+    public function testIsRequested(): void
     {
         $manager = new Manager();
         $manager->parseIncludes(['foo', 'bar', 'baz.bart']);
@@ -202,7 +202,7 @@ class ScopeTest extends TestCase
         $this->assertFalse($childScope->isRequested('baz'));
     }
 
-    public function testIsExcluded()
+    public function testIsExcluded(): void
     {
         $manager = new Manager();
         $manager->parseIncludes(['foo', 'bar', 'baz.bart']);
@@ -222,11 +222,10 @@ class ScopeTest extends TestCase
         $this->assertTrue($scope->isExcluded('baz.bart'));
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
-    public function testScopeRequiresConcreteImplementation()
+    public function testScopeRequiresConcreteImplementation(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+
         $manager = new Manager();
         $manager->parseIncludes('book');
 
@@ -239,7 +238,7 @@ class ScopeTest extends TestCase
         $scope->toArray();
     }
 
-    public function testToArrayWithIncludes()
+    public function testToArrayWithIncludes(): void
     {
         $manager = new Manager();
         $manager->parseIncludes('book,price');
@@ -261,7 +260,7 @@ class ScopeTest extends TestCase
         $this->assertSame(['data' => ['bar' => 'baz', 'book' => ['yin' => 'yang'], 'price' => 99]], $scope->toArray());
     }
 
-    public function testToArrayWithNumericKeysPreserved()
+    public function testToArrayWithNumericKeysPreserved(): void
     {
         $manager = new Manager();
         $manager->setSerializer(new ArraySerializer());
@@ -275,7 +274,7 @@ class ScopeTest extends TestCase
         $this->assertSame(['1' => 'First', '2' => 'Second'], $scope->toArray());
     }
 
-    public function testToArrayWithSideloadedIncludes()
+    public function testToArrayWithSideloadedIncludes(): void
     {
         $serializer = Mockery::mock('League\Fractal\Serializer\ArraySerializer')->makePartial();
         $serializer->shouldReceive('sideloadIncludes')->andReturn(true);
@@ -309,7 +308,7 @@ class ScopeTest extends TestCase
         $this->assertSame($expected, $scope->toArray());
     }
 
-    public function testPushParentScope()
+    public function testPushParentScope(): void
     {
         $manager = new Manager();
 
@@ -326,7 +325,7 @@ class ScopeTest extends TestCase
         $this->assertSame(['book', 'author', 'profile'], $scope->getParentScopes());
     }
 
-    public function testRunAppropriateTransformerWithPrimitive()
+    public function testRunAppropriateTransformerWithPrimitive(): void
     {
         $manager = new Manager();
 
@@ -347,7 +346,7 @@ class ScopeTest extends TestCase
         $this->assertSame(20, $scope->transformPrimitiveResource());
     }
 
-    public function testRunAppropriateTransformerWithItem()
+    public function testRunAppropriateTransformerWithItem(): void
     {
         $manager = new Manager();
 
@@ -363,7 +362,7 @@ class ScopeTest extends TestCase
         $this->assertSame(['data' => $this->simpleItem], $scope->toArray());
     }
 
-    public function testRunAppropriateTransformerWithCollection()
+    public function testRunAppropriateTransformerWithCollection(): void
     {
         $manager = new Manager();
 
@@ -382,11 +381,12 @@ class ScopeTest extends TestCase
 
     /**
      * @covers \League\Fractal\Scope::executeResourceTransformers
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Argument $resource should be an instance of League\Fractal\Resource\Item or League\Fractal\Resource\Collection
      */
-    public function testCreateDataWithClassFuckKnows()
+    public function testCreateDataWithClassFuckKnows(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Argument $resource should be an instance of League\Fractal\Resource\Item or League\Fractal\Resource\Collection');
+
         $manager = new Manager();
 
         $transformer = Mockery::mock('League\Fractal\TransformerAbstract')->makePartial();
@@ -396,7 +396,7 @@ class ScopeTest extends TestCase
         $scope->toArray();
     }
 
-    public function testPaginatorOutput()
+    public function testPaginatorOutput(): void
     {
         $manager = new Manager();
 
@@ -451,7 +451,7 @@ class ScopeTest extends TestCase
         $this->assertSame($expectedOutput, $rootScope->toArray());
     }
 
-    public function testCursorOutput()
+    public function testCursorOutput(): void
     {
         $manager = new Manager();
 
@@ -489,7 +489,7 @@ class ScopeTest extends TestCase
         $this->assertSame($expectedOutput, $rootScope->toArray());
     }
 
-    public function testDefaultIncludeSuccess()
+    public function testDefaultIncludeSuccess(): void
     {
         $manager = new Manager();
         $manager->setSerializer(new ArraySerializer());
@@ -510,7 +510,7 @@ class ScopeTest extends TestCase
         $this->assertSame($expected, $scope->toArray());
     }
 
-    public function testPrimitiveResourceIncludeSuccess()
+    public function testPrimitiveResourceIncludeSuccess(): void
     {
         $manager = new Manager();
         $manager->setSerializer(new ArraySerializer());
@@ -526,7 +526,7 @@ class ScopeTest extends TestCase
         $this->assertSame($expected, $scope->toArray());
     }
 
-    public function testNullResourceIncludeSuccess()
+    public function testNullResourceIncludeSuccess(): void
     {
         $manager = new Manager();
         $manager->setSerializer(new ArraySerializerWithNull);
@@ -547,7 +547,7 @@ class ScopeTest extends TestCase
     /**
      * @covers \League\Fractal\Scope::toArray
      */
-    public function testNullResourceDataAndJustMeta()
+    public function testNullResourceDataAndJustMeta(): void
     {
         $manager = new Manager();
         $manager->setSerializer(new ArraySerializerWithNull);
@@ -564,7 +564,7 @@ class ScopeTest extends TestCase
      * @covers \League\Fractal\Scope::toArray
      * @dataProvider fieldsetsProvider
      */
-    public function testToArrayWithFieldsets($fieldsetsToParse, $expected)
+    public function testToArrayWithFieldsets($fieldsetsToParse, $expected): void
     {
         $manager = new Manager();
 
@@ -604,7 +604,7 @@ class ScopeTest extends TestCase
      * @covers \League\Fractal\Scope::toArray
      * @dataProvider fieldsetsWithMandatorySerializerFieldsProvider
      */
-    public function testToArrayWithFieldsetsAndMandatorySerializerFields($fieldsetsToParse, $expected)
+    public function testToArrayWithFieldsetsAndMandatorySerializerFields($fieldsetsToParse, $expected): void
     {
         $serializer = Mockery::mock('League\Fractal\Serializer\DataArraySerializer')->makePartial();
         $serializer->shouldReceive('getMandatoryFields')->andReturn(['foo']);
@@ -644,7 +644,7 @@ class ScopeTest extends TestCase
     /**
      * @dataProvider fieldsetsWithIncludesProvider
      */
-    public function testToArrayWithIncludesAndFieldsets($fieldsetsToParse, $expected)
+    public function testToArrayWithIncludesAndFieldsets($fieldsetsToParse, $expected): void
     {
         $transformer = $this->createTransformerWithIncludedResource('book', ['book' => ['yin' => 'yang']]);
 
@@ -682,7 +682,7 @@ class ScopeTest extends TestCase
      * @covers \League\Fractal\Scope::toArray
      * @dataProvider fieldsetsWithSideLoadIncludesProvider
      */
-    public function testToArrayWithSideloadedIncludesAndFieldsets($fieldsetsToParse, $expected)
+    public function testToArrayWithSideloadedIncludesAndFieldsets($fieldsetsToParse, $expected): void
     {
         $serializer = Mockery::mock('League\Fractal\Serializer\DataArraySerializer')->makePartial();
         $serializer->shouldReceive('sideloadIncludes')->andReturn(true);
@@ -727,7 +727,7 @@ class ScopeTest extends TestCase
         ];
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         Mockery::close();
     }

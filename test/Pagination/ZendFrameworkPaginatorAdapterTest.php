@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class ZendFrameworkPaginatorAdapterTest extends TestCase
 {
-    public function testPaginationAdapter()
+    public function testPaginationAdapter(): void
     {
         $items = [
             'Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5', 'Item 6', 'Item 7', 'Item 8', 'Item 9', 'Item 10',
@@ -46,7 +46,7 @@ class ZendFrameworkPaginatorAdapterTest extends TestCase
         $this->assertSame('http://example.com/foo?page=3', $adapter->getUrl(3));
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         Mockery::close();
     }

@@ -8,14 +8,14 @@ class PrimitiveTest extends TestCase
 {
     protected $simplePrimitive = 'sample string';
 
-    public function testGetData()
+    public function testGetData(): void
     {
         $primitive = new Primitive($this->simplePrimitive);
 
         $this->assertSame($primitive->getData(), $this->simplePrimitive);
     }
 
-    public function testGetTransformer()
+    public function testGetTransformer(): void
     {
         $primitive = new Primitive($this->simplePrimitive, function () {});
 
@@ -30,7 +30,7 @@ class PrimitiveTest extends TestCase
     /**
      * @covers \League\Fractal\Resource\Primitive::setResourceKey
      */
-    public function testSetResourceKey()
+    public function testSetResourceKey(): void
     {
         $primitive = Mockery::mock('League\Fractal\Resource\Primitive')->makePartial();
 
@@ -40,7 +40,7 @@ class PrimitiveTest extends TestCase
     /**
      * @covers \League\Fractal\Resource\Primitive::getResourceKey
      */
-    public function testGetResourceKey()
+    public function testGetResourceKey(): void
     {
         $primitive = Mockery::mock('League\Fractal\Resource\Primitive')->makePartial();
         $primitive->setResourceKey('foo');

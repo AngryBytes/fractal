@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class CursorTest extends TestCase
 {
-    public function testCursor()
+    public function testCursor(): void
     {
         $cursor = new Cursor(100, 90, 110, 10);
 

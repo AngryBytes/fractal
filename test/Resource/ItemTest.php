@@ -8,14 +8,14 @@ class ItemTest extends TestCase
 {
     protected $simpleItem = ['foo' => 'bar'];
 
-    public function testGetData()
+    public function testGetData(): void
     {
         $item = new Item($this->simpleItem, function () {});
 
         $this->assertSame($item->getData(), $this->simpleItem);
     }
 
-    public function testGetTransformer()
+    public function testGetTransformer(): void
     {
         $item = new Item($this->simpleItem, function () {});
 
@@ -30,7 +30,7 @@ class ItemTest extends TestCase
     /**
      * @covers \League\Fractal\Resource\Item::setResourceKey
      */
-    public function testSetResourceKey()
+    public function testSetResourceKey(): void
     {
         $item = Mockery::mock('League\Fractal\Resource\Item')->makePartial();
 
@@ -40,7 +40,7 @@ class ItemTest extends TestCase
     /**
      * @covers \League\Fractal\Resource\Item::getResourceKey
      */
-    public function testGetResourceKey()
+    public function testGetResourceKey(): void
     {
         $item = Mockery::mock('League\Fractal\Resource\Item')->makePartial();
         $item->setResourceKey('foo');

@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class ManagerTest extends TestCase
 {
-    public function testParseIncludeSelfie()
+    public function testParseIncludeSelfie(): void
     {
         $manager = new Manager();
 
@@ -17,29 +17,29 @@ class ManagerTest extends TestCase
         $this->assertInstanceOf(get_class($manager), $manager->parseIncludes(['foo']));
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage The parseIncludes() method expects a string or an array. NULL given
-     */
-    public function testInvalidParseInclude()
+    public function testInvalidParseInclude(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('The parseIncludes() method expects a string or an array. NULL given');
+
         $manager = new Manager();
 
         $manager->parseIncludes(null);
     }
 
     /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage The parseIncludes() method expects a string or an array. integer given
      */
-    public function testIceTParseInclude()
+    public function testIceTParseInclude(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('The parseIncludes() method expects a string or an array. integer given');
+
         $manager = new Manager();
 
         $manager->parseIncludes(99);
     }
 
-    public function testParseIncludes()
+    public function testParseIncludes(): void
     {
         $manager = new Manager();
 
@@ -91,7 +91,7 @@ class ManagerTest extends TestCase
         $this->assertSame(['foo', 'foo.bar', 'baz'], $manager->getRequestedIncludes());
     }
 
-    public function testParseExcludeSelfie()
+    public function testParseExcludeSelfie(): void
     {
         $manager = new Manager();
 
@@ -99,29 +99,27 @@ class ManagerTest extends TestCase
         $this->assertInstanceOf(get_class($manager), $manager->parseExcludes(['foo']));
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage The parseExcludes() method expects a string or an array. NULL given
-     */
-    public function testInvalidParseExclude()
+    public function testInvalidParseExclude(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('The parseExcludes() method expects a string or an array. NULL given');
+
         $manager = new Manager();
 
         $manager->parseExcludes(null);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage The parseExcludes() method expects a string or an array. integer given
-     */
-    public function testIceTParseExclude()
+    public function testIceTParseExclude(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('The parseExcludes() method expects a string or an array. integer given');
+
         $manager = new Manager();
 
         $manager->parseExcludes(99);
     }
 
-    public function testParseExcludes()
+    public function testParseExcludes(): void
     {
         $manager = new Manager();
 
@@ -143,7 +141,7 @@ class ManagerTest extends TestCase
         $this->assertSame(['foo.bar'], $manager->getRequestedExcludes());
     }
 
-    public function testRecursionLimiting()
+    public function testRecursionLimiting(): void
     {
         $manager = new Manager();
 
@@ -209,7 +207,7 @@ class ManagerTest extends TestCase
         );
     }
 
-    public function testCreateDataWithCallback()
+    public function testCreateDataWithCallback(): void
     {
         $manager = new Manager();
 
@@ -241,7 +239,7 @@ class ManagerTest extends TestCase
 
     }
 
-    public function testParseFieldsets()
+    public function testParseFieldsets(): void
     {
         $manager = new Manager();
 
@@ -276,7 +274,7 @@ class ManagerTest extends TestCase
         $this->assertSame(null, $manager->getFieldset('inexistent'));
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         Mockery::close();
     }
