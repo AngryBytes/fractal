@@ -7,6 +7,8 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/thephpleague/fractal.svg?style=flat-square)](https://scrutinizer-ci.com/g/thephpleague/fractal)
 [![Total Downloads](https://img.shields.io/packagist/dt/league/fractal.svg?style=flat-square)](https://packagist.org/packages/league/fractal)
 
+**NOTE: This is a fork that Angry Bytes maintains for compatiblity with newer versions of PHP.**
+
 Fractal provides a presentation and transformation layer for complex data output, the like found in
 RESTful APIs, and works really well with JSON. Think of this as a view layer for your JSON/YAML/etc.
 
